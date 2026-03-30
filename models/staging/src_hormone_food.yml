@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: hormone_food_raw
+    description: "Raw data migrated from Supabase PostgreSQL to BigQuery"
+    database: hormone-food-analytics
+    schema: hormone_food_db
+    tables:
+      - name: foods
+        description: "Food items from the BEDCA Spanish food database"
+        columns:
+          - name: food_id
+            tests:
+              - unique
+              - not_null
+      - name: nutrients
+        description: "Nutrient definitions"
+        columns:
+          - name: nutrient_id
+            tests:
+              - unique
+              - not_null
+      - name: food_nutrients
+        description: "Amount of each nutrient per 100g of each food"
+      - name: cycle_phases
+        description: "4 menstrual cycle phases"
+        columns:
+          - name: phase_id
+            tests:
+              - unique
+              - not_null
+      - name: phase_nutrient_needs
+        description: "Which nutrients are important during each cycle phase"
+      - name: food_recommendations
+        description: "Computed recommendation scores for each food-phase combination"
